@@ -1,21 +1,101 @@
 //
 //  ratingBarView.m
-//  demo
+//  jhjy
 //
-//  Created by 罗西 on 8/23/15.
-//  Copyright (c) 2015 com.demo. All rights reserved.
+//  Created by 罗西 on 7/22/15.
+//  Copyright (c) 2015 King. All rights reserved.
 //
 
 #import "ratingBarView.h"
 
+#define ZOOM 1.0f
+@interface ratingBarView()
+@property (nonatomic,strong) UIView *bottomView;
+@property (nonatomic,strong) UIView *topView;
+@property (nonatomic,assign) CGFloat starWidth;
+@end
+
 @implementation ratingBarView
 
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect {
-    // Drawing code
+- (id)initWithFrame:(CGRect)frame topImg:(NSString*)topImgName bottomImg:(NSString*)bottomImgName
+{
+    self = [super initWithFrame:frame];
+    if (self) {
+        // Initialization code
+        self.backgroundColor = [UIColor whiteColor];
+        self.bottomView = [[UIView alloc] initWithFrame:self.bounds];
+        self.topView = [[UIView alloc] initWithFrame:CGRectZero];
+        
+        [self addSubview:self.bottomView];
+        [self addSubview:self.topView];
+        
+        self.topView.clipsToBounds = YES;
+        self.topView.userInteractionEnabled = NO;
+        self.bottomView.userInteractionEnabled = NO;
+        self.userInteractionEnabled = YES;
+        
+        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tap:)];
+        UIPanGestureRecognizer *pan = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(pan:)];
+        [self addGestureRecognizer:tap];
+        [self addGestureRecognizer:pan];
+        
+        //
+        CGFloat width = frame.size.width/5.0;
+        self.starWidth = width;
+        for(int i = 0;i<5;i++){
+            UIImageView *img = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, width*ZOOM, width*ZOOM)];
+            img.center = CGPointMake((i+0.5)*width, frame.size.height/2);
+            img.image = [UIImage imageNamed:bottomImgName];
+            [self.bottomView addSubview:img];
+            UIImageView *img2 = [[UIImageView alloc] initWithFrame:img.frame];
+            img2.center = img.center;
+            img2.image = [UIImage imageNamed:topImgName];
+            [self.topView addSubview:img2];
+        }
+        self.enable = YES;
+        
+    }
+    return self;
 }
-*/
+-(void)setViewColor:(UIColor *)backgroundColor{
+    if(_viewColor!=backgroundColor){
+        self.backgroundColor = backgroundColor;
+        self.topView.backgroundColor = backgroundColor;
+        self.bottomView.backgroundColor = backgroundColor;
+    }
+}
+-(void)setStarNumber:(NSInteger)starNumber{
+    if(_starNumber!=starNumber){
+        _starNumber = starNumber;
+        self.topView.frame = CGRectMake(0, 0, self.starWidth*(starNumber+1), self.bounds.size.height);
+    }
+}
+-(void)tap:(UITapGestureRecognizer *)gesture{
+    if(self.enable){
+        CGPoint point = [gesture locationInView:self];
+        NSInteger count = (int)(point.x/self.starWidth)+1;
+        self.topView.frame = CGRectMake(0, 0, self.starWidth*count, self.bounds.size.height);
+        if(count>5){
+            _starNumber = 5;
+        }else{
+            _starNumber = count-1;
+        }
+    }
+}
+-(void)pan:(UIPanGestureRecognizer *)gesture{
+    if(self.enable){
+        CGPoint point = [gesture locationInView:self];
+        NSInteger count = (int)(point.x/self.starWidth);
+        if(count>=0 && count<=5 && _starNumber!=count){
+            self.topView.frame = CGRectMake(0, 0, self.starWidth*(count+1), self.bounds.size.height);
+            _starNumber = count;
+        }
+    }
+}
+
+-(NSInteger)getStartNum{
+    return _starNumber;
+}
+
 
 @end

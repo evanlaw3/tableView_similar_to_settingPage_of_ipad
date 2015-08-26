@@ -7,8 +7,11 @@
 //
 
 #import "AppDelegate.h"
+#import "ViewController.h"
 
 @interface AppDelegate ()
+
+@property (nonatomic, strong) UITabBarController *tabBarController;
 
 @end
 
@@ -17,6 +20,18 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    
+    self.tabBarController = [[UITabBarController alloc] init];
+    
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    self.window.backgroundColor = [UIColor whiteColor];
+    
+    ViewController *welcomeView = [ViewController new];
+    UINavigationController *welcomeNav = [[UINavigationController alloc] initWithRootViewController:welcomeView];
+    [_tabBarController setViewControllers:[NSArray arrayWithObjects:welcomeNav,nil]];
+    
+    self.window.rootViewController = _tabBarController;
+    
     return YES;
 }
 

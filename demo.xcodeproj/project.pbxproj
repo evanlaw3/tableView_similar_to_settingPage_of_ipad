@@ -14,6 +14,7 @@
 		156508C61B89B29C00A6F077 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 156508C51B89B29C00A6F077 /* Images.xcassets */; };
 		156508C91B89B29C00A6F077 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 156508C71B89B29C00A6F077 /* LaunchScreen.xib */; };
 		156508D51B89B29C00A6F077 /* demoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 156508D41B89B29C00A6F077 /* demoTests.m */; };
+		15EEC30B1B8A175B00BE740C /* ratingBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 15EEC30A1B8A175B00BE740C /* ratingBarView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,6 +41,8 @@
 		156508CE1B89B29C00A6F077 /* demoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = demoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		156508D31B89B29C00A6F077 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		156508D41B89B29C00A6F077 /* demoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = demoTests.m; sourceTree = "<group>"; };
+		15EEC3091B8A175B00BE740C /* ratingBarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ratingBarView.h; sourceTree = "<group>"; };
+		15EEC30A1B8A175B00BE740C /* ratingBarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ratingBarView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,6 +92,8 @@
 				156508C51B89B29C00A6F077 /* Images.xcassets */,
 				156508C71B89B29C00A6F077 /* LaunchScreen.xib */,
 				156508B81B89B29C00A6F077 /* Supporting Files */,
+				15EEC3091B8A175B00BE740C /* ratingBarView.h */,
+				15EEC30A1B8A175B00BE740C /* ratingBarView.m */,
 			);
 			path = demo;
 			sourceTree = "<group>";
@@ -222,6 +227,7 @@
 				156508C11B89B29C00A6F077 /* ViewController.m in Sources */,
 				156508BE1B89B29C00A6F077 /* AppDelegate.m in Sources */,
 				156508BB1B89B29C00A6F077 /* main.m in Sources */,
+				15EEC30B1B8A175B00BE740C /* ratingBarView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -350,8 +356,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = demo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = demo;
 			};
 			name = Debug;
 		};
@@ -360,8 +367,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = demo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = demo;
 			};
 			name = Release;
 		};
@@ -379,7 +387,7 @@
 				);
 				INFOPLIST_FILE = demoTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = demoTests;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/demo.app/demo";
 			};
 			name = Debug;
@@ -394,7 +402,7 @@
 				);
 				INFOPLIST_FILE = demoTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = demoTests;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/demo.app/demo";
 			};
 			name = Release;
@@ -418,6 +426,7 @@
 				156508DA1B89B29C00A6F077 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		156508DB1B89B29C00A6F077 /* Build configuration list for PBXNativeTarget "demoTests" */ = {
 			isa = XCConfigurationList;
@@ -426,6 +435,7 @@
 				156508DD1B89B29C00A6F077 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
